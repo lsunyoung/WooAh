@@ -15,7 +15,7 @@ class HospitalTableViewController: UITableViewController {
     
     var la:Double?
     var lo:Double?
-    var searchtext:UISearchBar?
+//    var searchtext:UISearchBar?
     
     @IBOutlet var distanceButton: UIButton!
     @IBOutlet var possibleButton: UIButton!
@@ -27,9 +27,9 @@ class HospitalTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         tableView.rowHeight = 120
         self.title = "병원 목록"
-        if let searchtext = searchtext {
-            search(with: searchtext)
-        }
+//        if let searchtext = searchtext {
+//            search(with: searchtext)
+//        }
         
         MenuIDName()
         MenuDay()

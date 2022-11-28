@@ -228,8 +228,8 @@ class MapViewController: UIViewController, MTMapViewDelegate, CLLocationManagerD
         let vc = segue.destination as? HospitalTableViewController
         vc?.la = la
         vc?.lo = lo
-        guard let searchtext = searchtext else {return}
-        vc?.searchtext = searchtext
+//        guard let searchtext = searchtext else {return}
+//        vc?.searchtext = searchtext
     }
 }
 
