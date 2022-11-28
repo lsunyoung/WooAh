@@ -14,8 +14,8 @@ class HospitalDetailViewController: UIViewController, MTMapViewDelegate, CLLocat
     var hospital:Hospital?
     var locationManager = CLLocationManager() //좌표를 얻어오기 위한 변수
     
-    var la:Double?
-    var lo:Double?
+//    var latitude:Double?
+//    var lo:Double?
 
     @IBOutlet var subView: UIView!
     var mapView: MTMapView?
@@ -101,7 +101,7 @@ class HospitalDetailViewController: UIViewController, MTMapViewDelegate, CLLocat
                 // 핀 디자인
 //                poiItem1?.markerType = MTMapPOIItemMarkerType.redPin
                 marker?.markerType = .customImage
-                marker?.customImage = UIImage(named: "hospital_marker_orange1")
+                marker?.customImage = UIImage(named: "hospital_marker_orange2")
                 marker?.itemName = hospital.dutyName //이름
                 marker?.showAnimationType = .noAnimation
                 marker?.mapPoint = mapPoint

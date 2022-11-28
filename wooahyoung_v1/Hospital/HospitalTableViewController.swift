@@ -13,9 +13,9 @@ class HospitalTableViewController: UITableViewController {
     var hospital:[Hospital] = []
     var page = 1
     
-    var la:Double?
-    var lo:Double?
-//    var searchtext:UISearchBar?
+    var latitude:Double?
+    var longitude:Double?
+    var searchBar:UISearchBar?
     
     @IBOutlet var distanceButton: UIButton!
     @IBOutlet var possibleButton: UIButton!
@@ -27,9 +27,16 @@ class HospitalTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         tableView.rowHeight = 120
         self.title = "병원 목록"
-//        if let searchtext = searchtext {
-//            search(with: searchtext)
-//        }
+        if let searchBar = searchBar {
+            if searchBar.text == "" {
+                if let latitude = latitude {
+                    if let longitude = longitude {
+                        hospitalMyLocation(mylat: latitude, mylon: longitude)
+                    }
+                }
+            }
+            search(with: searchBar.text)
+        }
         
         MenuIDName()
         MenuDay()
@@ -153,6 +160,20 @@ class HospitalTableViewController: UITableViewController {
             self.tableView.reloadData()
         }
     }
+    func hospitalMyLocation(mylat:Double, mylon:Double) {
+        let url = "https://wooahwooah.azurewebsites.net/hospital?page=1&limit=30"
+        //        print("url:",url)
+        let params:Parameters = ["mylon": mylon, "mylat": mylat]
+        let alamo = AF.request(url, method: .get, parameters: params/*, headers: nil*/)
+        
+        alamo.responseDecodable(of: ResultData1.self) { response in
+            //            print(response)
+            guard let root = response.value else {return}
+            self.hospital = root.hospital
+            //            print(self.hospital)
+            self.tableView.reloadData()
+        }
+    }
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -234,10 +255,10 @@ class HospitalTableViewController: UITableViewController {
             let hospital = self.hospital[indexPath.row]
             let vc = segue.destination as? HospitalDetailViewController
             vc?.hospital = hospital
-            guard let la = la else {return}
-            vc?.la = la
-            guard let lo = lo else {return}
-            vc?.lo = lo
+//            guard let la = la else {return}
+//            vc?.la = la
+//            guard let lo = lo else {return}
+//            vc?.lo = lo
         }
     }
     

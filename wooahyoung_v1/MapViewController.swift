@@ -11,7 +11,7 @@ import CoreLocation
 import Alamofire
 
 class MapViewController: UIViewController, MTMapViewDelegate, CLLocationManagerDelegate {
-    
+    var query:String = ""
     var hospital:[Hospital] = []
     var pharmacy:[Pharmacy] = []
     var page = 1
@@ -34,21 +34,24 @@ class MapViewController: UIViewController, MTMapViewDelegate, CLLocationManagerD
     @IBOutlet var subView: UIView!
     var mapView: MTMapView?
     
-    var latitude : Double = 37.53737528
-    var longitude : Double = 127.00557633
+//    var latitude : Double = 37.53737528
+//    var longitude : Double = 127.00557633
     
     var allCircle = [MTMapCircle]()
     
     var locationManager = CLLocationManager() //좌표를 얻어오기 위한 변수
-    var la:Double!
-    var lo:Double!
+    var latitude:Double!
+    var longitude:Double!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        hospitalSearch(mylat: 37.48652777387346, mylon: 126.8993736808353)
-//        pharmacySearch(mylat: 37.5170112, mylon: 126.9019532)
-        hospitalSearch(with:"여의도")
-        pharmacySearch(with:"여의도")
+//        guard let la = la else {return}
+//        guard let lo = lo else {return}
+//        hospitalMyLocation(mylat: la, mylon: lo)
+//        pharmacyMyLocation(mylat: la, mylon: lo)
+
+//        hospitalSearch(with:"여의도")
+//        pharmacySearch(with:"여의도")
         
         // 지도 불러오기
         mapView = MTMapView(frame: subView.frame)
@@ -77,11 +80,6 @@ class MapViewController: UIViewController, MTMapViewDelegate, CLLocationManagerD
         locationManager.startUpdatingLocation() //위치 계속 가져옴
         
         MyLocationBtn.layer.cornerRadius = 15 //버튼 라운드 처리
-
-//        guard let la = la else {return}
-//        guard let lo = lo else {return}
-//        print(la)
-//        print(lo)
     }
     func Menu() {
         var menuItems: [UIAction] {
@@ -107,21 +105,32 @@ class MapViewController: UIViewController, MTMapViewDelegate, CLLocationManagerD
         MenuButton.showsMenuAsPrimaryAction = true //짧게 눌러서 메뉴
     }
     
-    func hospitalSearch(with addr:String?/*, mylat:Double, mylon:Double*/) {
+    func hospitalSearch(with addr:String?) {
         guard let addr = addr else {return}
-//        let url = "https://wooahwooah.azurewebsites.net/hospital?mylon=\(mylon)&mylat=\(mylat)&page=1&limit=20"
         let url = "https://wooahwooah.azurewebsites.net/hospital?page=1&limit=30"
-
-        print("url:",url)
+//        print("url:",url)
         let params:Parameters = ["addr": addr]
         let alamo = AF.request(url, method: .get, parameters: params/*, headers: nil*/)
 
         alamo.responseDecodable(of: ResultData1.self) { response in
-            
             print(response)
             guard let root = response.value else {return}
             self.hospital = root.hospital
 //            print(self.hospital)
+            self.mapPOIhospital()
+        }
+    }
+    func hospitalMyLocation(mylat:Double, mylon:Double) {
+        let url = "https://wooahwooah.azurewebsites.net/hospital?page=1&limit=30"
+//        print("url:",url)
+        let params:Parameters = ["mylon": mylon, "mylat": mylat]
+        let alamo = AF.request(url, method: .get, parameters: params/*, headers: nil*/)
+        
+        alamo.responseDecodable(of: ResultData1.self) { response in
+//            print(response)
+            guard let root = response.value else {return}
+            self.hospital = root.hospital
+            //            print(self.hospital)
             self.mapPOIhospital()
         }
     }
@@ -145,13 +154,10 @@ class MapViewController: UIViewController, MTMapViewDelegate, CLLocationManagerD
             mapView.setMapCenter(MTMapPoint(geoCoord: MTMapPointGeo(latitude:  hospital.wgs84Lat, longitude: hospital.wgs84Lon)), zoomLevel: 2, animated: true) // 지도의 센터를 설정 (x와 y 좌표, 줌 레벨 등을 설정)
         }
     }
-    func pharmacySearch(with addr:String?/*, mylat:Double, mylon:Double*/) {
+    func pharmacySearch(with addr:String?) {
         guard let addr = addr else {return}
-//        let url = "https://wooahwooah.azurewebsites.net/pharmacy?mylon=\(mylon)&mylat=\(mylat)&page=1&limit=20"
         let url = "https://wooahwooah.azurewebsites.net/pharmacy?page=1&limit=30"
-//        guard let strURL = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {return}
-        
-        print("url:",url)
+//        print("url:",url)
         let params:Parameters = ["addr": addr]
         let alamo = AF.request(url, method: .get, parameters: params/*, headers: nil*/)
         
@@ -159,6 +165,19 @@ class MapViewController: UIViewController, MTMapViewDelegate, CLLocationManagerD
             guard let root = response.value else {return}
             self.pharmacy = root.pharmacy
 //            print(self.hospital)
+            self.mapPOIpharmacy()
+        }
+    }
+    func pharmacyMyLocation(mylat:Double, mylon:Double) {
+        let url = "https://wooahwooah.azurewebsites.net/pharmacy?page=1&limit=30"
+        //        print("url:",url)
+        let params:Parameters = ["mylon": mylon, "mylat": mylat]
+        let alamo = AF.request(url, method: .get, parameters: params/*, headers: nil*/)
+        
+        alamo.responseDecodable(of: ResultData2.self) { response in
+            guard let root = response.value else {return}
+            self.pharmacy = root.pharmacy
+            //            print(self.hospital)
             self.mapPOIpharmacy()
         }
     }
@@ -179,69 +198,52 @@ class MapViewController: UIViewController, MTMapViewDelegate, CLLocationManagerD
         }
     }
 
-    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first { // 위치 정보 계속 업데이트
-            la = location.coordinate.latitude
-            lo = location.coordinate.longitude
-//            guard let la = la else {return}
-//            guard let lo = lo else {return}
-//            print("위도: \(la)")
-//            print("경도: \(lo)")
-//            hospitalSearch(mylat: lo, mylon: la)
+            latitude = location.coordinate.latitude
+            longitude = location.coordinate.longitude
         }
     }
     @IBAction func actMyLocation(_ sender: Any) {
+        if let mapView = mapView {
+            mapView.removeAllPOIItems() // poiitems 지워짐
+        }
         // 현재 위치 트래킹
         mapView?.currentLocationTrackingMode = .onWithoutHeading
         mapView?.showCurrentLocationMarker = true
-//        guard let la = la else {return}
-//        guard let lo = lo else {return}
-//
-//        hospitalSearch(mylat: lo, mylon: la)
-        // info에서 Privacy - Location Always and When In Use Usage Description와 Privacy - Location When In Use Usage Description 설정 해줘야 함
-        
-//        if CLLocationManager.locationServicesEnabled() {
-//            locationManager.startUpdatingLocation()
-//            let currentLat = locationManager.location?.coordinate.latitude ?? 0 //위도
-//            let currentLng = locationManager.location?.coordinate.longitude ?? 0 //경도
-//            // print locationManager.location?.coordinate.latitude
-//            // print locationManager.location?.coordinate.longitude
-////            print(currentLat)
-////            print(currentLng)
-//        }
-    }
-    
-    @IBAction func actHospital(_ sender: Any) {
-        
-    }
-    @IBAction func actPharmacy(_ sender: Any) {
-        
-    }
-    @IBAction func actFavorite(_ sender: Any) {
-        
+        if let latitude = latitude {
+            if let longitude = longitude {
+                hospitalMyLocation(mylat: latitude, mylon: longitude)
+                pharmacyMyLocation(mylat: latitude, mylon: longitude)
+            }
+        }
     }
 
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let vc = segue.destination as? HospitalTableViewController
-        vc?.la = la
-        vc?.lo = lo
-//        guard let searchtext = searchtext else {return}
-//        vc?.searchtext = searchtext
+        if segue.identifier == "hospital" {
+            let vc = segue.destination as? HospitalTableViewController
+            vc?.latitude = latitude
+            vc?.longitude = longitude
+            vc?.searchBar = searchBar
+        } else if  segue.identifier == "pharmacy" {
+            let vc = segue.destination as? PharmacyTableViewController
+            vc?.searchBar = searchBar
+            vc?.latitude = latitude
+            vc?.longitude = longitude
+        }
     }
 }
 
 extension MapViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let mapView = mapView {
-            mapView.removeAllPOIItems() // 검색 시 poiitems 지워짐
+            mapView.removeAllPOIItems() // poiitems 지워짐
         }
         let searchtext = searchBar.text
         hospitalSearch(with:searchtext)
         pharmacySearch(with:searchtext)
         searchBar.resignFirstResponder()
-        
     }
 }

@@ -93,7 +93,7 @@ class PharmacyDetailViewController: UIViewController, MTMapViewDelegate {
                 marker = MTMapPOIItem()
                 // 핀 디자인
                 marker?.markerType = .customImage
-                marker?.customImage = UIImage(named: "pharmacy_marker_green1")
+                marker?.customImage = UIImage(named: "pharmacy_marker_green2")
                 marker?.itemName = pharmacy.dutyName //이름
                 marker?.showAnimationType = .noAnimation
                 marker?.mapPoint = mapPoint

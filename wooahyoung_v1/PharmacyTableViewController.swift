@@ -11,6 +11,9 @@ import Alamofire
 class PharmacyTableViewController: UITableViewController {
     var pharmacy:[Pharmacy] = []
     var page = 1
+    var searchBar:UISearchBar?
+    var longitude:Double?
+    var latitude:Double?
     
     @IBOutlet var distanceButton: UIButton!
     @IBOutlet var possibleButton: UIButton!
@@ -22,7 +25,20 @@ class PharmacyTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         tableView.rowHeight = 120
         self.title = "약국 목록"
-        search(with: "", at: 1)
+        if let searchBar = searchBar {
+            search(with: searchBar.text)
+        }
+        if let searchBar = searchBar {
+            if searchBar.text == "" {
+                if let latitude = latitude {
+                    if let longitude = longitude {
+                        pharmacyMyLocation(mylat: latitude, mylon: longitude)
+                    }
+                }
+            }
+            search(with: searchBar.text)
+            
+        }
         
         distanceButton.layer.cornerRadius = 15
         possibleButton.layer.cornerRadius = 15
@@ -32,17 +48,30 @@ class PharmacyTableViewController: UITableViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-    func search(with query:String?, at page:Int) {
-        //        guard let query = query else {return} //옵셔널임 //http사이트일 경우 info에서 App Transport Security Settings 추가 -> 하위 Allow Arbitrary Loads 추가 -> Value를 Yes로 변경
-        let url = "https://wooahwooah.azurewebsites.net/pharmacy?addr=%EC%84%9C%EC%9A%B8&page=2&limit=20"
+    func search(with addr:String?) {
+        guard let addr = addr else {return}
+        let url = "https://wooahwooah.azurewebsites.net/pharmacy?page=1&limit=30"
         print("url:",url)
-        //        let params:Parameters = ["query":query, "page": page]
-        let alamo = AF.request(url, method: .get/*, parameters: params, headers: nil*/)
+        let params:Parameters = ["addr":addr]
+        let alamo = AF.request(url, method: .get, parameters: params/*, headers: nil*/)
         
         alamo.responseDecodable(of: ResultData2.self) { response in
             guard let root = response.value else {return}
             self.pharmacy = root.pharmacy
             print(self.pharmacy)
+            self.tableView.reloadData()
+        }
+    }
+    func pharmacyMyLocation(mylat:Double, mylon:Double) {
+        let url = "https://wooahwooah.azurewebsites.net/pharmacy?page=1&limit=30"
+        //        print("url:",url)
+        let params:Parameters = ["mylon": mylon, "mylat": mylat]
+        let alamo = AF.request(url, method: .get, parameters: params/*, headers: nil*/)
+        
+        alamo.responseDecodable(of: ResultData2.self) { response in
+            guard let root = response.value else {return}
+            self.pharmacy = root.pharmacy
+            //            print(self.hospital)
             self.tableView.reloadData()
         }
     }
