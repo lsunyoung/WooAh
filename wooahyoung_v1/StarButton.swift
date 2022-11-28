@@ -11,7 +11,7 @@ class StarButton: UIButton {
 
     /// 별 이미지
     var checkBoxResouces = OnOffResources(
-        onImage: UIImage(systemName: "star.fill")?.withTintColor(.yellow).withRenderingMode(.alwaysOriginal), //#colorLiteral(
+        onImage: UIImage(systemName: "star.fill")?.withTintColor(.systemYellow).withRenderingMode(.alwaysOriginal), //#colorLiteral(
         offImage: UIImage(systemName: "star")
     ) {
         didSet {

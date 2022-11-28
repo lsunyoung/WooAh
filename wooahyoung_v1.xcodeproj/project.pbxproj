@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		291F089A292EFF4900DB3E63 /* PharmacyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291F0899292EFF4900DB3E63 /* PharmacyDetailViewController.swift */; };
 		295CBE23292B63AC00F14391 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295CBE22292B63AC00F14391 /* AppDelegate.swift */; };
 		295CBE25292B63AC00F14391 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295CBE24292B63AC00F14391 /* SceneDelegate.swift */; };
 		295CBE2A292B63AC00F14391 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 295CBE28292B63AC00F14391 /* Main.storyboard */; };
@@ -59,6 +60,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		291F0899292EFF4900DB3E63 /* PharmacyDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PharmacyDetailViewController.swift; sourceTree = "<group>"; };
 		295CBE1F292B63AC00F14391 /* wooahyoung_v1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wooahyoung_v1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		295CBE22292B63AC00F14391 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		295CBE24292B63AC00F14391 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -161,16 +163,10 @@
 		295CBE21292B63AC00F14391 /* wooahyoung_v1 */ = {
 			isa = PBXGroup;
 			children = (
-				295CBE22292B63AC00F14391 /* AppDelegate.swift */,
-				295CBE24292B63AC00F14391 /* SceneDelegate.swift */,
-				295CBE3A292B6B2B00F14391 /* MapViewController.swift */,
-				295CBE48292B6E7000F14391 /* HospitalTableViewController.swift */,
-				295CBE3C292B6B4700F14391 /* HospitalCell.swift */,
-				29F7006B292CF99200493F89 /* HospitalDetailViewController.swift */,
-				29F7006D292D0D2B00493F89 /* StarButton.swift */,
-				295CBE4A292B6E7C00F14391 /* PharmacyTableViewController.swift */,
-				295CBE3E292B6B5500F14391 /* PharmacyCell.swift */,
-				295CBE46292B6DD300F14391 /* Data.swift */,
+				297567BE2930A5E500BF6A58 /* Main */,
+				297567BF2930A61700BF6A58 /* Hospital */,
+				297567C02930A62C00BF6A58 /* Pharmacy */,
+				2975679D29304D7400BF6A58 /* Base */,
 				295CBE4C292B71F300F14391 /* DaumMap.embeddedframework */,
 				295CBE28292B63AC00F14391 /* Main.storyboard */,
 				295CBE2B292B63AD00F14391 /* Assets.xcassets */,
@@ -251,6 +247,45 @@
 				295CBE90292B723700F14391 /* CoreLocation.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2975679D29304D7400BF6A58 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				295CBE22292B63AC00F14391 /* AppDelegate.swift */,
+				295CBE24292B63AC00F14391 /* SceneDelegate.swift */,
+				29F7006D292D0D2B00493F89 /* StarButton.swift */,
+				295CBE46292B6DD300F14391 /* Data.swift */,
+			);
+			name = Base;
+			sourceTree = "<group>";
+		};
+		297567BE2930A5E500BF6A58 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				295CBE3A292B6B2B00F14391 /* MapViewController.swift */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		297567BF2930A61700BF6A58 /* Hospital */ = {
+			isa = PBXGroup;
+			children = (
+				295CBE48292B6E7000F14391 /* HospitalTableViewController.swift */,
+				295CBE3C292B6B4700F14391 /* HospitalCell.swift */,
+				29F7006B292CF99200493F89 /* HospitalDetailViewController.swift */,
+			);
+			path = Hospital;
+			sourceTree = "<group>";
+		};
+		297567C02930A62C00BF6A58 /* Pharmacy */ = {
+			isa = PBXGroup;
+			children = (
+				295CBE4A292B6E7C00F14391 /* PharmacyTableViewController.swift */,
+				295CBE3E292B6B5500F14391 /* PharmacyCell.swift */,
+				291F0899292EFF4900DB3E63 /* PharmacyDetailViewController.swift */,
+			);
+			name = Pharmacy;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -361,6 +396,7 @@
 				295CBE3D292B6B4700F14391 /* HospitalCell.swift in Sources */,
 				295CBE23292B63AC00F14391 /* AppDelegate.swift in Sources */,
 				29F7006C292CF99200493F89 /* HospitalDetailViewController.swift in Sources */,
+				291F089A292EFF4900DB3E63 /* PharmacyDetailViewController.swift in Sources */,
 				295CBE3B292B6B2B00F14391 /* MapViewController.swift in Sources */,
 				29F7006E292D0D2B00493F89 /* StarButton.swift in Sources */,
 				295CBE3F292B6B5500F14391 /* PharmacyCell.swift in Sources */,
