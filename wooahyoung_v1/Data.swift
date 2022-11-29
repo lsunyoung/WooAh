@@ -35,7 +35,8 @@ struct Hospital:Codable {
     let wgs84Lon:Double
     let wgs84Lat:Double
     let dutyEryn:Int //응급실 1은 없음 2은 있음
-    //    let o038:String //입원실
+    let o038:String //입원실
+//    let avalhospital:Int //진료가능
 }
 struct Pharmacy:Codable {
 //    let hpid:String

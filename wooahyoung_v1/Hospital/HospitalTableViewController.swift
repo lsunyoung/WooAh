@@ -44,6 +44,7 @@ class HospitalTableViewController: UITableViewController {
         possibleButton.layer.cornerRadius = 15
         idnameButton.layer.cornerRadius = 15
         dayButton.layer.cornerRadius = 15
+        
     }
     @IBAction func actBack(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
@@ -192,7 +193,23 @@ class HospitalTableViewController: UITableViewController {
         cell.lblHospitalName.text = hospitalindex.dutyName
         cell.lblHospitalAddr.text = hospitalindex.dutyAddr
         cell.lblHospitalCall.text = hospitalindex.dutyTel1
-
+        
+        let date = NSDate()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH00"
+        if hospitalindex.dutyTime1s <= "\(formatter.string(from: date as Date))" {
+            if hospitalindex.dutyTime1c >= "\(formatter.string(from: date as Date))" {
+                cell.dateImage.isEnabled = true
+            } else {
+                cell.dateImage.isEnabled = false
+            }
+        }
+        if hospitalindex.dutyTime8s == "" {
+            cell.holiImage.isEnabled = false
+        } else {
+            cell.holiImage.isEnabled = true
+        }
+        
         return cell
     }
 
@@ -255,12 +272,7 @@ class HospitalTableViewController: UITableViewController {
             let hospital = self.hospital[indexPath.row]
             let vc = segue.destination as? HospitalDetailViewController
             vc?.hospital = hospital
-//            guard let la = la else {return}
-//            vc?.la = la
-//            guard let lo = lo else {return}
-//            vc?.lo = lo
-        }
+        } 
     }
-    
-
 }
+

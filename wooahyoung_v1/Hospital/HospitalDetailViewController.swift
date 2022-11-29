@@ -32,7 +32,11 @@ class HospitalDetailViewController: UIViewController, MTMapViewDelegate, CLLocat
     @IBOutlet var shareButton: UIButton!
     @IBOutlet var mapButton: UIButton!
     
-    @IBOutlet var dateImage: UIButton!
+    @IBOutlet var dateButton: UIButton!{
+        didSet {
+            dateButton.isEnabled = false
+        }
+    }
     @IBOutlet var emergencyButton: UIButton!{
         didSet {
             emergencyButton.isEnabled = false
@@ -111,6 +115,28 @@ class HospitalDetailViewController: UIViewController, MTMapViewDelegate, CLLocat
             }
         }
         locationManager.delegate = self
+        if let hospital = hospital {
+            if hospital.dutyEryn == 1 {
+                self.emergencyButton.isEnabled = false
+            } else {
+                self.emergencyButton.isEnabled = true
+            }
+            if hospital.o038 == "*" {
+                self.bedButton.isEnabled = false
+            } else {
+                self.bedButton.isEnabled = true
+            }
+            let date = NSDate()
+            let formatter = DateFormatter()
+            formatter.dateFormat = "HH00"
+            if hospital.dutyTime1s <= "\(formatter.string(from: date as Date))" {
+                if hospital.dutyTime1c >= "\(formatter.string(from: date as Date))" {
+                    self.dateButton.isEnabled = true
+                } else {
+                    self.dateButton.isEnabled = false
+                }
+            }
+        }
     }
 
     @IBAction func actBack(_ sender: Any) {

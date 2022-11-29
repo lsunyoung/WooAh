@@ -23,17 +23,16 @@ class PharmacyDetailViewController: UIViewController, MTMapViewDelegate {
     @IBOutlet var lbltel1: UILabel!
     @IBOutlet var starButton: StarButton!
     
-//    @IBOutlet var dateImage: UIButton!
-//    @IBOutlet var dutyErynImage: UIButton!{
-//        didSet {
-//            dutyErynImage.isEnabled = false
-//        }
-//    }
-//    @IBOutlet var o038Image: UIButton!{
-//        didSet {
-//            o038Image.isEnabled = false
-//        }
-//    }
+    @IBOutlet var dateButton: UIButton!{
+        didSet {
+            dateButton.isEnabled = false
+        }
+    }
+    @IBOutlet var holidayButton: UIButton!{
+        didSet {
+            holidayButton.isEnabled = false
+        }
+    }
     
     @IBOutlet var lblMon: UILabel!
     @IBOutlet var lblTue: UILabel!
@@ -48,17 +47,6 @@ class PharmacyDetailViewController: UIViewController, MTMapViewDelegate {
     @IBOutlet var facebookButton: UIButton!
     @IBOutlet var snsButton: UIButton!
     
-    @IBOutlet var dateImage: UIButton!
-    @IBOutlet var holidayButton: UIButton!{
-        didSet {
-            holidayButton.isEnabled = false
-        }
-    }
-    @IBOutlet var nightButton: UIButton!{
-        didSet {
-            nightButton.isEnabled = false
-        }
-    }
     @IBOutlet var detailView: UIView!
     
     override func viewDidLoad() {
@@ -103,6 +91,25 @@ class PharmacyDetailViewController: UIViewController, MTMapViewDelegate {
             }
         }
         self.view.bringSubviewToFront(detailView)
+        
+        if let pharmacy = pharmacy {
+            let date = NSDate()
+            let formatter = DateFormatter()
+            formatter.dateFormat = "HH00"
+            if pharmacy.dutyTime1s <= "\(formatter.string(from: date as Date))" {
+                if pharmacy.dutyTime1c >= "\(formatter.string(from: date as Date))" {
+                    self.dateButton.isEnabled = true
+                } else {
+                    self.dateButton.isEnabled = false
+                }
+            }
+            if pharmacy.dutyTime8s == "" {
+                self.holidayButton.isEnabled = false
+            } else {
+                self.holidayButton.isEnabled = true
+            }
+        }
+        
     }
     @IBAction func actBack(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)

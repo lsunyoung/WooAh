@@ -9,6 +9,7 @@ import UIKit
 import MapKit
 import CoreLocation
 import Alamofire
+import SafariServices
 
 class MapViewController: UIViewController, MTMapViewDelegate, CLLocationManagerDelegate {
     var query:String = ""
@@ -45,11 +46,6 @@ class MapViewController: UIViewController, MTMapViewDelegate, CLLocationManagerD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        guard let la = la else {return}
-//        guard let lo = lo else {return}
-//        hospitalMyLocation(mylat: la, mylon: lo)
-//        pharmacyMyLocation(mylat: la, mylon: lo)
-
 //        hospitalSearch(with:"여의도")
 //        pharmacySearch(with:"여의도")
         
@@ -85,12 +81,19 @@ class MapViewController: UIViewController, MTMapViewDelegate, CLLocationManagerD
         var menuItems: [UIAction] {
             return [
                 UIAction(title: "즐겨찾기", image: UIImage(named: "Star"), handler: { (_) in
+//                    let vc = self.storyboard?.instantiateViewController
+//                    (withIdentifier: "HospitalTableViewController") as! HospitalTableViewController
+//                    vc.userChoice = getUserShape(sender)
+//                    present(vc, animated: true, completion: nil)
                 }),
                 UIAction(title: "현재 진료가능 병원", image: UIImage(named: "hospital"), handler: { (_) in
                 }),
                 UIAction(title: "현재 방문가능 약국", image: UIImage(named: "pharmacy"), handler: { (_) in
                 }),
                 UIAction(title: "달빛어린이 병원", image: UIImage(named: "moonhospital"), handler: { (_) in
+                    let moonUrl = NSURL(string: "https://www.e-gen.or.kr/moonlight/")
+                    let moonSafariView: SFSafariViewController = SFSafariViewController(url: moonUrl! as URL)
+                    self.present(moonSafariView, animated: true, completion: nil)
                 }),
                 UIAction(title: "심야 약국", image: UIImage(named: "moonpharmacy"), handler: { (_) in
                 })
@@ -170,14 +173,14 @@ class MapViewController: UIViewController, MTMapViewDelegate, CLLocationManagerD
     }
     func pharmacyMyLocation(mylat:Double, mylon:Double) {
         let url = "https://wooahwooah.azurewebsites.net/pharmacy?page=1&limit=30"
-        //        print("url:",url)
+//        print("url:",url)
         let params:Parameters = ["mylon": mylon, "mylat": mylat]
         let alamo = AF.request(url, method: .get, parameters: params/*, headers: nil*/)
         
         alamo.responseDecodable(of: ResultData2.self) { response in
             guard let root = response.value else {return}
             self.pharmacy = root.pharmacy
-            //            print(self.hospital)
+//            print(self.hospital)
             self.mapPOIpharmacy()
         }
     }
@@ -205,6 +208,7 @@ class MapViewController: UIViewController, MTMapViewDelegate, CLLocationManagerD
         }
     }
     @IBAction func actMyLocation(_ sender: Any) {
+        var searchtext = ""
         if let mapView = mapView {
             mapView.removeAllPOIItems() // poiitems 지워짐
         }

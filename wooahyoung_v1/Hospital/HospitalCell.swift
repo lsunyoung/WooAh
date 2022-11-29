@@ -8,23 +8,23 @@
 import UIKit
 
 class HospitalCell: UITableViewCell {
+    var hospital:[Hospital] = []
 
     @IBOutlet weak var lblHospitalName: UILabel!
     @IBOutlet weak var lblHospitalAddr: UILabel!
     @IBOutlet weak var lblHospitalCall: UILabel!
     
-    @IBOutlet var dateImage: UIButton!
+    @IBOutlet var dateImage: UIButton!{
+        didSet {
+            dateImage.isEnabled = false
+        }
+    }
     @IBOutlet var holiImage: UIButton!{
         didSet {
             holiImage.isEnabled = false
         }
     }
-    @IBOutlet var nightImage: UIButton!{
-        didSet {
-            nightImage.isEnabled = false
-        }
-    }
-
+    @IBOutlet var nightImage: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -47,4 +47,6 @@ class HospitalCell: UITableViewCell {
 //            }
 //        }), for: .editingChanged)
 //    }
+    
 }
+

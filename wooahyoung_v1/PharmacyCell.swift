@@ -13,15 +13,14 @@ class PharmacyCell: UITableViewCell {
     @IBOutlet weak var lblPharmacyAddr: UILabel!
     @IBOutlet weak var lblPharmacyCall: UILabel!
     
-    @IBOutlet var dateImage: UIButton!
+    @IBOutlet var dateImage: UIButton!{
+        didSet {
+            dateImage.isEnabled = false
+        }
+    }
     @IBOutlet var holiImage: UIButton!{
         didSet {
             holiImage.isEnabled = false
-        }
-    }
-    @IBOutlet var nightImage: UIButton!{
-        didSet {
-            nightImage.isEnabled = false
         }
     }
     

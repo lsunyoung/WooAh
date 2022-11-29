@@ -11,6 +11,7 @@ import Alamofire
 class PharmacyTableViewController: UITableViewController {
     var pharmacy:[Pharmacy] = []
     var page = 1
+    
     var searchBar:UISearchBar?
     var longitude:Double?
     var latitude:Double?
@@ -37,7 +38,6 @@ class PharmacyTableViewController: UITableViewController {
                 }
             }
             search(with: searchBar.text)
-            
         }
         
         distanceButton.layer.cornerRadius = 15
@@ -94,7 +94,23 @@ class PharmacyTableViewController: UITableViewController {
         cell.lblPharmacyName.text = pharmacyindex.dutyName
         cell.lblPharmacyAddr.text = pharmacyindex.dutyAddr
         cell.lblPharmacyCall.text = pharmacyindex.dutyTel1
-        //
+        
+        let date = NSDate()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH00"
+        if pharmacyindex.dutyTime1s <= "\(formatter.string(from: date as Date))" {
+            if pharmacyindex.dutyTime1c >= "\(formatter.string(from: date as Date))" {
+                cell.dateImage.isEnabled = true
+            } else {
+                cell.dateImage.isEnabled = false
+            }
+        }
+        if pharmacyindex.dutyTime8s == "" {
+            cell.holiImage.isEnabled = false
+        } else {
+            cell.holiImage.isEnabled = true
+        }
+        
         return cell
     }
 
