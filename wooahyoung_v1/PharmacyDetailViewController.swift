@@ -33,6 +33,11 @@ class PharmacyDetailViewController: UIViewController, MTMapViewDelegate {
             holidayButton.isEnabled = false
         }
     }
+    @IBOutlet var weekButton: UIButton!{
+        didSet {
+            weekButton.isEnabled = false
+        }
+    }
     
     @IBOutlet var lblMon: UILabel!
     @IBOutlet var lblTue: UILabel!
@@ -107,6 +112,11 @@ class PharmacyDetailViewController: UIViewController, MTMapViewDelegate {
                 self.holidayButton.isEnabled = false
             } else {
                 self.holidayButton.isEnabled = true
+            }
+            if pharmacy.dutyTime6c == "" {
+                self.weekButton.isEnabled = false
+            } else {
+                self.weekButton.isEnabled = true
             }
         }
         

@@ -985,7 +985,7 @@
                                                 <rect key="frame" x="262" y="204" width="120" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="moon.stars" catalog="system" subtitle="야간진료">
+                                                <buttonConfiguration key="configuration" style="plain" image="sun.min" catalog="system" subtitle="주말진료">
                                                     <backgroundConfiguration key="background"/>
                                                     <color key="baseForegroundColor" systemColor="systemGreenColor"/>
                                                 </buttonConfiguration>
@@ -1095,6 +1095,7 @@
                         <outlet property="snsButton" destination="hM3-U7-Dk2" id="Zm9-nj-rCR"/>
                         <outlet property="starButton" destination="9Aj-QV-xoL" id="Ghu-d6-AY1"/>
                         <outlet property="subView" destination="001-Pq-56n" id="xgr-il-OXn"/>
+                        <outlet property="weekButton" destination="f7Z-HE-qD6" id="vze-9I-xna"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2cJ-6k-j6y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1142,12 +1143,12 @@
         <image name="line.3.horizontal" catalog="system" width="128" height="65"/>
         <image name="location" catalog="system" width="128" height="121"/>
         <image name="location.square.fill" catalog="system" width="128" height="114"/>
-        <image name="moon.stars" catalog="system" width="125" height="128"/>
         <image name="phone" catalog="system" width="128" height="115"/>
         <image name="sharehospital_orange1" width="16.666666030883789" height="16.666666030883789"/>
         <image name="sharepharmacy_green1" width="16.666666030883789" height="16.666666030883789"/>
         <image name="star" catalog="system" width="128" height="116"/>
         <image name="stethoscope" catalog="system" width="128" height="101"/>
+        <image name="sun.min" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
