@@ -36,7 +36,7 @@
                                 <rect key="frame" x="0.0" y="103" width="393" height="56"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D5Q-qC-ZFR">
-                                        <rect key="frame" x="0.0" y="0.0" width="69" height="56"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="51" height="56"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="line.3.horizontal" catalog="system">
                                             <backgroundConfiguration key="background">
@@ -44,9 +44,12 @@
                                             </backgroundConfiguration>
                                             <color key="baseForegroundColor" red="0.2421002569" green="0.2421002569" blue="0.2421002569" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <segue destination="L3Y-Jv-CvI" kind="show" identifier="menu_favorite" id="cGC-Si-HkS"/>
+                                        </connections>
                                     </button>
                                     <searchBar contentMode="redraw" placeholder="주소 검색" backgroundImage="bg_white" translatesAutoresizingMaskIntoConstraints="NO" id="jl2-hy-4Ta">
-                                        <rect key="frame" x="74" y="0.0" width="319" height="56"/>
+                                        <rect key="frame" x="56" y="0.0" width="337" height="56"/>
                                         <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
@@ -56,7 +59,7 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nQa-VN-2jd">
-                                <rect key="frame" x="0.0" y="139" width="393" height="713"/>
+                                <rect key="frame" x="0.0" y="114" width="393" height="738"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="NFX-3n-LcD">
@@ -72,7 +75,8 @@
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <segue destination="OBR-Sx-fpX" kind="show" identifier="hospital" id="EGR-F5-Jqa"/>
+                                            <action selector="actHospitalList:" destination="t0I-MS-Bif" eventType="touchUpInside" id="xwQ-oz-3So"/>
+                                            <segue destination="OBR-Sx-fpX" kind="show" identifier="hospital" id="LZv-UP-JWQ"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UF8-Cb-0vs">
@@ -85,6 +89,7 @@
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
                                         <connections>
+                                            <action selector="actPharmacyList:" destination="t0I-MS-Bif" eventType="touchUpInside" id="32b-ya-Sj2"/>
                                             <segue destination="CSk-uI-z3h" kind="show" identifier="pharmacy" id="tFf-Os-IyP"/>
                                         </connections>
                                     </button>
@@ -164,28 +169,8 @@
                             <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nel-22-kse">
-                                    <rect key="frame" x="18" y="8" width="90" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" red="0.98823523520000001" green="0.98823523520000001" blue="0.90588235859999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" title="거리순">
-                                        <backgroundConfiguration key="background"/>
-                                        <color key="baseForegroundColor" systemColor="systemGreenColor"/>
-                                    </buttonConfiguration>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VXT-j3-yJg">
-                                    <rect key="frame" x="256" y="8" width="120" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" red="0.98823523520000001" green="0.98823523520000001" blue="0.90588235859999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" title="심야약국">
-                                        <backgroundConfiguration key="background"/>
-                                        <color key="baseForegroundColor" systemColor="systemGreenColor"/>
-                                    </buttonConfiguration>
-                                </button>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="niI-8H-1KK">
-                                    <rect key="frame" x="122" y="8" width="120" height="30"/>
+                                    <rect key="frame" x="52" y="8" width="120" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" red="0.98823523520000001" green="0.98823523520000001" blue="0.90588235859999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <state key="normal" title="Button"/>
@@ -193,6 +178,22 @@
                                         <backgroundConfiguration key="background"/>
                                         <color key="baseForegroundColor" systemColor="systemGreenColor"/>
                                     </buttonConfiguration>
+                                    <connections>
+                                        <action selector="actpossibleBtn:" destination="CSk-uI-z3h" eventType="touchUpInside" id="4hx-Ab-YZy"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VXT-j3-yJg">
+                                    <rect key="frame" x="215" y="8" width="120" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" red="0.98823523520000001" green="0.98823523520000001" blue="0.90588235859999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="심야약국">
+                                        <backgroundConfiguration key="background"/>
+                                        <color key="baseForegroundColor" systemColor="systemGreenColor"/>
+                                    </buttonConfiguration>
+                                    <connections>
+                                        <action selector="actMoonPharmacy:forEvent:" destination="CSk-uI-z3h" eventType="touchUpInside" id="xmg-Cz-yzQ"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -206,7 +207,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="약국이름" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2JU-0O-b7X">
-                                            <rect key="frame" x="20" y="15.999999999999998" width="76.333333333333329" height="26.333333333333329"/>
+                                            <rect key="frame" x="20" y="16" width="76.666666666666671" height="26.666666666666671"/>
                                             <fontDescription key="fontDescription" type="system" weight="black" pointSize="22"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -223,16 +224,8 @@
                                             <color key="textColor" red="0.42724315680000002" green="0.67839638790000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MmI-C5-VS6">
-                                            <rect key="frame" x="350.66666666666669" y="90.333333333333329" width="42.333333333333314" height="29.666666666666671"/>
-                                            <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="plain" subtitle="km">
-                                                <backgroundConfiguration key="background"/>
-                                                <color key="baseForegroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </buttonConfiguration>
-                                        </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nru-Uc-hPS">
-                                            <rect key="frame" x="287" y="49.666666666666664" width="106" height="29.666666666666664"/>
+                                            <rect key="frame" x="287" y="50" width="106" height="30"/>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="plain" image="hold.brakesignal" catalog="system" subtitle="공휴일진료">
                                                 <backgroundConfiguration key="background"/>
@@ -240,23 +233,30 @@
                                             </buttonConfiguration>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bX7-3p-gao">
-                                            <rect key="frame" x="7" y="87.333333333333329" width="150" height="29.666666666666671"/>
+                                            <rect key="frame" x="7" y="87" width="150" height="30"/>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="plain" image="phone" catalog="system" subtitle=" ">
                                                 <color key="baseForegroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </buttonConfiguration>
                                             <connections>
                                                 <action selector="actCall:" destination="eKd-wP-H4u" eventType="touchUpInside" id="xYW-uC-OnH"/>
+                                                <action selector="actCall:" destination="CSk-uI-z3h" eventType="touchUpInside" id="yKW-3a-4gU"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eXb-N1-Ko0">
-                                            <rect key="frame" x="302.33333333333331" y="20" width="90.666666666666686" height="29.666666666666671"/>
+                                            <rect key="frame" x="302.66666666666669" y="20" width="90.333333333333314" height="30"/>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="plain" image="cross" catalog="system" subtitle="방문가능">
                                                 <backgroundConfiguration key="background"/>
                                                 <color key="baseForegroundColor" systemColor="systemGreenColor"/>
                                             </buttonConfiguration>
                                         </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 m" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="idi-hn-VPJ">
+                                            <rect key="frame" x="346.66666666666669" y="87" width="26.333333333333314" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="trailingMargin" secondItem="l0b-QR-hFw" secondAttribute="trailing" constant="201" id="AQz-EP-DPV"/>
@@ -264,24 +264,25 @@
                                         <constraint firstAttribute="bottom" secondItem="bX7-3p-gao" secondAttribute="bottom" constant="3" id="LcC-yo-eLr"/>
                                         <constraint firstItem="bX7-3p-gao" firstAttribute="leading" secondItem="beV-1V-DrN" secondAttribute="leading" constant="7" id="MPG-cq-bFJ"/>
                                         <constraint firstAttribute="trailing" secondItem="eXb-N1-Ko0" secondAttribute="trailing" id="PF6-Zi-dhZ"/>
-                                        <constraint firstAttribute="bottom" secondItem="MmI-C5-VS6" secondAttribute="bottom" id="Qkn-W3-6YH"/>
                                         <constraint firstItem="eXb-N1-Ko0" firstAttribute="top" secondItem="beV-1V-DrN" secondAttribute="top" constant="20" id="TEf-4S-8wx"/>
                                         <constraint firstItem="KD6-6r-pVi" firstAttribute="leading" secondItem="beV-1V-DrN" secondAttribute="leadingMargin" id="TWW-ue-OGg"/>
                                         <constraint firstAttribute="trailing" secondItem="Nru-Uc-hPS" secondAttribute="trailing" id="VbF-6E-wUz"/>
                                         <constraint firstItem="2JU-0O-b7X" firstAttribute="leading" secondItem="beV-1V-DrN" secondAttribute="leadingMargin" id="bld-yD-py1"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="KD6-6r-pVi" secondAttribute="trailing" constant="109" id="dYR-0i-GoK"/>
-                                        <constraint firstAttribute="trailing" secondItem="MmI-C5-VS6" secondAttribute="trailing" id="obo-H3-rGy"/>
+                                        <constraint firstItem="idi-hn-VPJ" firstAttribute="top" secondItem="Nru-Uc-hPS" secondAttribute="bottom" constant="7" id="iKB-GY-c7M"/>
                                         <constraint firstItem="l0b-QR-hFw" firstAttribute="bottom" secondItem="beV-1V-DrN" secondAttribute="bottomMargin" id="pSG-a0-sr6"/>
                                         <constraint firstItem="Nru-Uc-hPS" firstAttribute="top" secondItem="eXb-N1-Ko0" secondAttribute="bottom" id="rKb-qL-WkG"/>
                                         <constraint firstItem="2JU-0O-b7X" firstAttribute="top" secondItem="beV-1V-DrN" secondAttribute="topMargin" constant="5" id="tC7-AR-Z2Y"/>
                                         <constraint firstItem="l0b-QR-hFw" firstAttribute="leading" secondItem="beV-1V-DrN" secondAttribute="leadingMargin" constant="26" id="uWh-Ir-yVV"/>
                                         <constraint firstAttribute="trailing" secondItem="bX7-3p-gao" secondAttribute="trailing" constant="236" id="zT7-wH-HbL"/>
+                                        <constraint firstItem="idi-hn-VPJ" firstAttribute="trailing" secondItem="beV-1V-DrN" secondAttribute="trailingMargin" id="znJ-9N-SXe"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dateImage" destination="eXb-N1-Ko0" id="Pg3-Jc-zFB"/>
                                     <outlet property="holiImage" destination="Nru-Uc-hPS" id="ngj-aL-24h"/>
+                                    <outlet property="lblDistance" destination="idi-hn-VPJ" id="3sQ-ri-qNt"/>
                                     <outlet property="lblPharmacyAddr" destination="KD6-6r-pVi" id="Cet-Rw-FQR"/>
                                     <outlet property="lblPharmacyCall" destination="l0b-QR-hFw" id="RMP-aH-ecK"/>
                                     <outlet property="lblPharmacyName" destination="2JU-0O-b7X" id="RKk-az-wx2"/>
@@ -303,7 +304,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="distanceButton" destination="nel-22-kse" id="0aa-qQ-Mbt"/>
                         <outlet property="nightButton" destination="VXT-j3-yJg" id="lMY-cK-s3B"/>
                         <outlet property="possibleButton" destination="niI-8H-1KK" id="79o-ZM-yJJ"/>
                     </connections>
@@ -311,7 +311,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E0K-yn-cca" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="eKd-wP-H4u" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="619.08396946564881" y="596.47887323943667"/>
+            <point key="canvasLocation" x="991.60305343511448" y="700"/>
         </scene>
         <!--Hospital Detail View Controller-->
         <scene sceneID="ghc-1R-yzS">
@@ -321,8 +321,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1L5-rd-Qgd">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="399"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1L5-rd-Qgd">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="350"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWE-oM-5CP">
@@ -501,9 +501,12 @@
                                                 <buttonConfiguration key="configuration" style="plain" image="star" catalog="system">
                                                     <color key="baseForegroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="starButton:" destination="RIW-9Z-qI2" eventType="touchUpInside" id="6hC-bi-Fe5"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dGz-p0-p1j">
-                                                <rect key="frame" x="71" y="11" width="50" height="40"/>
+                                                <rect key="frame" x="66" y="11" width="50" height="40"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="sharehospital_orange1">
@@ -584,7 +587,7 @@
                         <outlet property="mapButton" destination="nbr-le-npA" id="sKU-Wz-SqZ"/>
                         <outlet property="shareButton" destination="dGz-p0-p1j" id="msm-BH-2ny"/>
                         <outlet property="snsButton" destination="Lh6-Mu-hpX" id="9Wv-91-YLi"/>
-                        <outlet property="starButton" destination="pHX-1d-RSH" id="jzk-5X-6TR"/>
+                        <outlet property="starButton" destination="pHX-1d-RSH" id="fJ9-cv-XJo"/>
                         <outlet property="subView" destination="1L5-rd-Qgd" id="XCd-fi-dlk"/>
                     </connections>
                 </viewController>
@@ -634,18 +637,8 @@
                             <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HRX-s8-zwT">
-                                    <rect key="frame" x="8" y="8" width="70" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" red="0.98823523520000001" green="0.93758651541452565" blue="0.75114450423065282" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" title="거리순">
-                                        <backgroundConfiguration key="background"/>
-                                        <color key="baseForegroundColor" systemColor="systemOrangeColor"/>
-                                    </buttonConfiguration>
-                                </button>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ah-JT-rHU">
-                                    <rect key="frame" x="185" y="8" width="100" height="30"/>
+                                    <rect key="frame" x="142" y="8" width="100" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" red="0.98823523520000001" green="0.93758651540000004" blue="0.75114450420000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <state key="normal" title="Button"/>
@@ -655,7 +648,7 @@
                                     </buttonConfiguration>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="47K-iR-R67">
-                                    <rect key="frame" x="293" y="8" width="90" height="30"/>
+                                    <rect key="frame" x="262" y="6" width="90" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" red="0.98823523520000001" green="0.93627874493364072" blue="0.74618129085853846" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <state key="normal" title="Button"/>
@@ -665,14 +658,16 @@
                                     </buttonConfiguration>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fN5-bc-9y4">
-                                    <rect key="frame" x="86" y="8" width="90" height="30"/>
+                                    <rect key="frame" x="32" y="6" width="90" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" red="0.98823523520000001" green="0.93758651540000004" blue="0.75114450420000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" title="진료가능">
-                                        <backgroundConfiguration key="background"/>
                                         <color key="baseForegroundColor" systemColor="systemOrangeColor"/>
                                     </buttonConfiguration>
+                                    <connections>
+                                        <action selector="actpossibleBtn:" destination="OBR-Sx-fpX" eventType="touchUpInside" id="mvm-y0-PAv"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -686,7 +681,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="병원이름" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="90p-N7-Vfc">
-                                            <rect key="frame" x="20" y="15.999999999999998" width="72.666666666666671" height="25.333333333333329"/>
+                                            <rect key="frame" x="20" y="16" width="73" height="25.666666666666671"/>
                                             <fontDescription key="fontDescription" type="system" weight="black" pointSize="21"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -698,23 +693,15 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o4w-4E-uvU">
-                                            <rect key="frame" x="298.33333333333331" y="20" width="93.666666666666686" height="29.666666666666671"/>
+                                            <rect key="frame" x="298" y="20" width="94" height="30"/>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="plain" image="stethoscope" catalog="system" subtitle="진료가능">
                                                 <backgroundConfiguration key="background"/>
                                                 <color key="baseForegroundColor" systemColor="systemOrangeColor"/>
                                             </buttonConfiguration>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Yd-5G-b35">
-                                            <rect key="frame" x="349.66666666666669" y="90.333333333333329" width="42.333333333333314" height="29.666666666666671"/>
-                                            <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="plain" subtitle="km">
-                                                <backgroundConfiguration key="background"/>
-                                                <color key="baseForegroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </buttonConfiguration>
-                                        </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tUg-8p-FkV">
-                                            <rect key="frame" x="286" y="49.666666666666664" width="106" height="29.666666666666664"/>
+                                            <rect key="frame" x="286" y="50" width="106" height="30"/>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="plain" image="hold.brakesignal" catalog="system" subtitle="공휴일진료">
                                                 <backgroundConfiguration key="background"/>
@@ -722,16 +709,25 @@
                                             </buttonConfiguration>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uxn-dN-SQR">
-                                            <rect key="frame" x="7" y="87.333333333333329" width="150" height="29.666666666666671"/>
+                                            <rect key="frame" x="7" y="87" width="150" height="30"/>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="plain" image="phone" catalog="system" subtitle=" ">
                                                 <color key="baseForegroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </buttonConfiguration>
+                                            <connections>
+                                                <action selector="actCall:" destination="OBR-Sx-fpX" eventType="touchUpInside" id="sA5-dI-FWI"/>
+                                            </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="전화번호" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NUZ-7H-6Hg">
                                             <rect key="frame" x="46" y="91" width="127" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" red="0.42724315680000002" green="0.67839638790000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0 m" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6de-Y3-vcz">
+                                            <rect key="frame" x="247" y="88" width="126" height="22"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -747,24 +743,24 @@
                                         <constraint firstItem="o4w-4E-uvU" firstAttribute="top" secondItem="PHQ-DG-hC9" secondAttribute="top" constant="20" id="OyG-Hn-Cjt"/>
                                         <constraint firstAttribute="trailing" secondItem="tUg-8p-FkV" secondAttribute="trailing" constant="1" id="PSH-BP-SY3"/>
                                         <constraint firstItem="uxn-dN-SQR" firstAttribute="leading" secondItem="PHQ-DG-hC9" secondAttribute="leading" constant="7" id="QGK-1p-7Nn"/>
-                                        <constraint firstAttribute="bottom" secondItem="0Yd-5G-b35" secondAttribute="bottom" id="WiK-T8-IXD"/>
                                         <constraint firstItem="NUZ-7H-6Hg" firstAttribute="leading" secondItem="PHQ-DG-hC9" secondAttribute="leadingMargin" constant="26" id="ZIj-0B-L9F"/>
+                                        <constraint firstItem="6de-Y3-vcz" firstAttribute="top" secondItem="tUg-8p-FkV" secondAttribute="bottom" constant="8" symbolic="YES" id="day-Ur-II8"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="soZ-0b-gAS" secondAttribute="trailing" constant="109" id="nAl-YI-RF6"/>
                                         <constraint firstItem="uxn-dN-SQR" firstAttribute="leading" secondItem="PHQ-DG-hC9" secondAttribute="leading" constant="7" id="nd7-e1-Kvt"/>
                                         <constraint firstItem="90p-N7-Vfc" firstAttribute="leading" secondItem="PHQ-DG-hC9" secondAttribute="leadingMargin" id="ozJ-e7-LyH"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="NUZ-7H-6Hg" secondAttribute="trailing" constant="200" id="rie-Td-ovi"/>
                                         <constraint firstAttribute="trailing" secondItem="uxn-dN-SQR" secondAttribute="trailing" constant="236" id="sPc-ec-wWY"/>
-                                        <constraint firstAttribute="trailing" secondItem="0Yd-5G-b35" secondAttribute="trailing" constant="1" id="xpz-JU-ho2"/>
+                                        <constraint firstAttribute="trailing" secondItem="6de-Y3-vcz" secondAttribute="trailing" constant="20" symbolic="YES" id="xap-f6-pG6"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dateImage" destination="o4w-4E-uvU" id="KtM-zB-l0G"/>
                                     <outlet property="holiImage" destination="tUg-8p-FkV" id="aU0-Zk-AGL"/>
+                                    <outlet property="lblDistance" destination="6de-Y3-vcz" id="o3I-fM-qu2"/>
                                     <outlet property="lblHospitalAddr" destination="soZ-0b-gAS" id="Vrz-N1-V9J"/>
                                     <outlet property="lblHospitalCall" destination="NUZ-7H-6Hg" id="Euv-VW-f2x"/>
                                     <outlet property="lblHospitalName" destination="90p-N7-Vfc" id="jTG-gD-zw5"/>
-                                    <outlet property="nightImage" destination="0Yd-5G-b35" id="Ext-f3-5J2"/>
                                     <segue destination="RIW-9Z-qI2" kind="show" identifier="hospitaldetail" id="kI4-Aq-TM6"/>
                                 </connections>
                             </tableViewCell>
@@ -784,19 +780,18 @@
                     </navigationItem>
                     <connections>
                         <outlet property="dayButton" destination="47K-iR-R67" id="B8v-JH-3ox"/>
-                        <outlet property="distanceButton" destination="HRX-s8-zwT" id="EOl-AR-Uov"/>
                         <outlet property="idnameButton" destination="2Ah-JT-rHU" id="N5i-YZ-HTN"/>
                         <outlet property="possibleButton" destination="fN5-bc-9y4" id="cGR-v1-Oiw"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rEI-AC-Xge" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-98.473282442748086" y="596.47887323943667"/>
+            <point key="canvasLocation" x="293.89312977099235" y="700"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Favorite Table View Controller-->
         <scene sceneID="vXF-Sf-utN">
             <objects>
-                <tableViewController id="L3Y-Jv-CvI" sceneMemberID="viewController">
+                <tableViewController id="L3Y-Jv-CvI" customClass="FavoriteTableViewController" customModule="wooahyoung_v1" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="fgV-7D-a9Z">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -808,32 +803,29 @@
                                 <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="d5Y-yt-rmZ">
                                     <rect key="frame" x="69" y="6" width="252" height="32"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                    <color key="backgroundColor" systemColor="systemGray6Color"/>
                                     <segments>
                                         <segment title="병원"/>
                                         <segment title="약국"/>
                                     </segments>
-                                    <color key="selectedSegmentTintColor" red="0.98431372640000003" green="0.98823523520000001" blue="0.90196073060000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <color key="tintColor" systemColor="systemGroupedBackgroundColor"/>
+                                    <color key="selectedSegmentTintColor" systemColor="systemYellowColor"/>
+                                    <connections>
+                                        <action selector="segBtn:" destination="L3Y-Jv-CvI" eventType="valueChanged" id="WY4-7L-ScH"/>
+                                    </connections>
                                 </segmentedControl>
                             </subviews>
                             <viewLayoutGuide key="contentLayoutGuide" id="qcf-x4-OrA"/>
                             <viewLayoutGuide key="frameLayoutGuide" id="iVs-Ut-Upv"/>
                         </scrollView>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="120" id="pXT-BG-lHS">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="favoritecell" rowHeight="120" id="pXT-BG-lHS">
                                 <rect key="frame" x="0.0" y="94" width="393" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pXT-BG-lHS" id="eBU-vP-mkZ">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="120"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="이름" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N1t-03-zV8">
-                                            <rect key="frame" x="20" y="14" width="284" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" weight="black" pointSize="22"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="주소" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o5v-9v-2yO">
                                             <rect key="frame" x="20" y="26" width="284" height="60"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -848,6 +840,23 @@
                                             <color key="textColor" systemColor="systemGray2Color"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="이름" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N1t-03-zV8">
+                                            <rect key="frame" x="20" y="14" width="284" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" weight="black" pointSize="22"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xfY-cy-NJe">
+                                            <rect key="frame" x="317" y="-3" width="56" height="112"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="tintColor" systemColor="systemYellowColor"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" image="star.fill" catalog="system"/>
+                                            <connections>
+                                                <action selector="actRemove:" destination="L3Y-Jv-CvI" eventType="touchUpInside" id="ov7-u1-KTY"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -857,11 +866,21 @@
                             <outlet property="delegate" destination="L3Y-Jv-CvI" id="lIk-s2-lNK"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="wA8-sP-xsl"/>
+                    <navigationItem key="navigationItem" id="wA8-sP-xsl">
+                        <barButtonItem key="leftBarButtonItem" title="&lt; 지도" image="back_small_small" id="hbj-NE-bgA">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="actBack:" destination="L3Y-Jv-CvI" id="g6t-uh-8kd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="segBtn" destination="d5Y-yt-rmZ" id="c1U-dd-dDW"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J44-8H-exL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1327.6923076923076" y="597.86729857819898"/>
+            <point key="canvasLocation" x="1475.5725190839694" y="-61.267605633802823"/>
         </scene>
         <!--Pharmacy Detail View Controller-->
         <scene sceneID="dc5-XO-dUV">
@@ -871,8 +890,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="001-Pq-56n">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="399"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="001-Pq-56n">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="348"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hIB-S5-bwk">
@@ -985,7 +1004,7 @@
                                                 <rect key="frame" x="262" y="204" width="120" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="sun.min" catalog="system" subtitle="주말진료">
+                                                <buttonConfiguration key="configuration" style="plain" image="sun.min" catalog="system" subtitle="주말운영">
                                                     <backgroundConfiguration key="background"/>
                                                     <color key="baseForegroundColor" systemColor="systemGreenColor"/>
                                                 </buttonConfiguration>
@@ -1003,13 +1022,13 @@
                                                 <rect key="frame" x="123" y="204" width="140" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="hold.brakesignal" catalog="system" subtitle="공휴일진료">
+                                                <buttonConfiguration key="configuration" style="plain" image="hold.brakesignal" catalog="system" subtitle="공휴일운영">
                                                     <backgroundConfiguration key="background"/>
                                                     <color key="baseForegroundColor" systemColor="systemGreenColor"/>
                                                 </buttonConfiguration>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="idp-c5-2Iv">
-                                                <rect key="frame" x="74" y="11" width="50" height="40"/>
+                                                <rect key="frame" x="69" y="11" width="50" height="40"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="sharepharmacy_green1">
@@ -1039,6 +1058,9 @@
                                                 <buttonConfiguration key="configuration" style="plain" image="star" catalog="system">
                                                     <color key="baseForegroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="starButton:" destination="AOi-Ab-317" eventType="touchUpInside" id="8w5-YP-k9E"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1130,6 +1152,9 @@
             <point key="canvasLocation" x="619.08396946564881" y="1254.2253521126761"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="cGC-Si-HkS"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="FaceBook" width="50" height="50"/>
         <image name="SNS1" width="50" height="50.333332061767578"/>
@@ -1147,6 +1172,7 @@
         <image name="sharehospital_orange1" width="16.666666030883789" height="16.666666030883789"/>
         <image name="sharepharmacy_green1" width="16.666666030883789" height="16.666666030883789"/>
         <image name="star" catalog="system" width="128" height="116"/>
+        <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="stethoscope" catalog="system" width="128" height="101"/>
         <image name="sun.min" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
@@ -1160,6 +1186,9 @@
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGroupedBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

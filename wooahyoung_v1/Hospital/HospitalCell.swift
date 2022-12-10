@@ -14,6 +14,8 @@ class HospitalCell: UITableViewCell {
     @IBOutlet weak var lblHospitalAddr: UILabel!
     @IBOutlet weak var lblHospitalCall: UILabel!
     
+    @IBOutlet var lblDistance: UILabel!
+    
     @IBOutlet var dateImage: UIButton!{
         didSet {
             dateImage.isEnabled = false
@@ -24,7 +26,7 @@ class HospitalCell: UITableViewCell {
             holiImage.isEnabled = false
         }
     }
-    @IBOutlet var nightImage: UIButton!
+  //  @IBOutlet var nightImage: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

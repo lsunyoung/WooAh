@@ -11,6 +11,9 @@ import CoreLocation
 
 class HospitalDetailViewController: UIViewController, MTMapViewDelegate, CLLocationManagerDelegate{
     
+    let fileName = "FavoriteHospitalList"
+    var favoriteList:NSMutableArray?
+    
     var hospital:Hospital?
     var locationManager = CLLocationManager() //좌표를 얻어오기 위한 변수
     
@@ -37,11 +40,14 @@ class HospitalDetailViewController: UIViewController, MTMapViewDelegate, CLLocat
             dateButton.isEnabled = false
         }
     }
+    
     @IBOutlet var emergencyButton: UIButton!{
         didSet {
             emergencyButton.isEnabled = false
         }
     }
+    
+    
     @IBOutlet var bedButton: UIButton!{
         didSet {
             bedButton.isEnabled = false
@@ -114,35 +120,223 @@ class HospitalDetailViewController: UIViewController, MTMapViewDelegate, CLLocat
                 self.view.addSubview(mapView)
             }
         }
+        
         locationManager.delegate = self
         if let hospital = hospital {
             if hospital.dutyEryn == 1 {
-                self.emergencyButton.isEnabled = false
-            } else {
                 self.emergencyButton.isEnabled = true
+            } else {
+                self.emergencyButton.isEnabled = false
             }
-            if hospital.o038 == "*" {
+            if hospital.o038 == "" {
                 self.bedButton.isEnabled = false
             } else {
                 self.bedButton.isEnabled = true
             }
+//            let date = NSDate()
+//            let formatter = DateFormatter()
+//            formatter.dateFormat = "HH00"
+//            if hospital.dutyTime1s <= "\(formatter.string(from: date as Date))" {
+//                if hospital.dutyTime1c >= "\(formatter.string(from: date as Date))" {
+//                    self.dateButton.isEnabled = true
+//                } else {
+//                    self.dateButton.isEnabled = false
+//                }
+//            }
+            
+            //요일 정보
+            let cal = Calendar(identifier:.gregorian)
+            let now = Date()
+            let comps = cal.dateComponents([.weekday], from:now)
+            // 일요일 1, 월요일 2, 화요일 3, 수요일 4, 목요일 5, 금요일 6, 토요일 7
+            print("요일 : \(comps.weekday!)")
+            
+            
+            //시간 정보
             let date = NSDate()
             let formatter = DateFormatter()
             formatter.dateFormat = "HH00"
-            if hospital.dutyTime1s <= "\(formatter.string(from: date as Date))" {
-                if hospital.dutyTime1c >= "\(formatter.string(from: date as Date))" {
-                    self.dateButton.isEnabled = true
-                } else {
-                    self.dateButton.isEnabled = false
+            
+            switch comps.weekday {
+            case 1 :
+                if hospital.dutyTime7s <= "\(formatter.string(from: date as Date))" {
+                    if hospital.dutyTime7c >= "\(formatter.string(from: date as Date))" {
+                        self.dateButton.isEnabled = true
+                    } else {
+                        self.dateButton.isEnabled = false
+                    }
                 }
+                break
+            case 2 :
+                if hospital.dutyTime1s <= "\(formatter.string(from: date as Date))" {
+                    if hospital.dutyTime1c >= "\(formatter.string(from: date as Date))" {
+                        self.dateButton.isEnabled = true
+                    } else {
+                        self.dateButton.isEnabled = false
+                    }
+                }
+                break
+            case 3 :
+                if hospital.dutyTime2s <= "\(formatter.string(from: date as Date))" {
+                    if hospital.dutyTime2c >= "\(formatter.string(from: date as Date))" {
+                        self.dateButton.isEnabled = true
+                    } else {
+                        self.dateButton.isEnabled = false
+                    }
+                }
+                break
+                
+            case 4 :
+                if hospital.dutyTime3s <= "\(formatter.string(from: date as Date))" {
+                    if hospital.dutyTime3c >= "\(formatter.string(from: date as Date))" {
+                        self.dateButton.isEnabled = true
+                    } else {
+                        self.dateButton.isEnabled = false
+                    }
+                }
+                break
+                
+            case 5 :
+                if hospital.dutyTime4s <= "\(formatter.string(from: date as Date))" {
+                    if hospital.dutyTime4c >= "\(formatter.string(from: date as Date))" {
+                        self.dateButton.isEnabled = true
+                    } else {
+                        self.dateButton.isEnabled = false
+                    }
+                }
+                break
+                
+            case 6 :
+                if hospital.dutyTime5s <= "\(formatter.string(from: date as Date))" {
+                    if hospital.dutyTime5c >= "\(formatter.string(from: date as Date))" {
+                        self.dateButton.isEnabled = true
+                    } else {
+                        self.dateButton.isEnabled = false
+                    }
+                }
+                break
+                
+            case 7 :
+                if hospital.dutyTime6s <= "\(formatter.string(from: date as Date))" {
+                    if hospital.dutyTime6c >= "\(formatter.string(from: date as Date))" {
+                        self.dateButton.isEnabled = true
+                    } else {
+                        self.dateButton.isEnabled = false
+                    }
+                }
+                break
+                
+            case .none:
+                self.dateButton.isEnabled = false
+                break
+            case .some(_):
+                self.dateButton.isEnabled = false
+                break
             }
+        }
+        
+        // 즐겨찾기/starbutton
+        let targetPath = getFilePath(fileName: fileName+".plist")
+        guard let originPath = Bundle.main.path(forResource: fileName, ofType: "plist") else {return}
+        copyFile(originPath,targetPath)
+        guard let favoriteList = NSMutableArray(contentsOfFile: targetPath) else {return}
+        self.favoriteList = favoriteList
+        print("상세페이지 ", self.favoriteList)
+        
+        //즐겨찾기에 있는 병원일 경우 별 활성화
+        if favoriteList.count > 0 {
+            var overlap = false
+            var overlapIndex = 0
+            for (i, ele) in favoriteList.enumerated(){
+                if let ele = ele as? [String:Any]  {
+                    if ele["hpid"] as! String == hospital?.hpid {
+                        print("이미 있다! : ",i)
+                        print("이미 있다! : ",ele["hpid"] ,":",hospital?.hpid )
+                        overlap = true
+                        overlapIndex = i
+                        break
+                    }
+                }
+            }//for end
+            self.starButton.isChecked = overlap
         }
     }
 
     @IBAction func actBack(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
-   
+    
+   //starButton
+    @IBAction func starButton(_ sender: Any) {
+        // starBtn Press Action
+        guard let favoriteList = self.favoriteList else {fatalError()}
+        let newDic = [
+            "hpid" : hospital?.hpid,
+            "dutyName" : hospital?.dutyName,
+            "dutyAddr" : hospital?.dutyAddr,
+            "dutyTel1" : hospital?.dutyTel1
+        ] as [String : Any]
+        
+        if favoriteList.count > 0 {
+            var overlap = false
+            var overlapIndex = 0
+            for (i, ele) in favoriteList.enumerated(){
+                
+                if let ele = ele as? [String:Any]  {
+                    if ele["hpid"] as! String == hospital?.hpid {
+                        print("이미 있다! : ",i)
+                        print("이미 있다! : ",ele["hpid"] ,":",hospital?.hpid )
+                        overlap = true
+                        overlapIndex = i
+                    }
+                }
+            }//for end
+            if overlap {
+                favoriteList.removeObject(at: overlapIndex)
+                let filePath = getFilePath(fileName: fileName+".plist")
+                let result =  favoriteList.write(toFile: filePath, atomically: true)
+                if result {
+                    //(sender as AnyObject).setImage(UIImage(systemName: "heart"), for: .normal)
+                    self.starButton.isChecked = false
+                    let alert =  makeAlertWithOneAction(title: nil, message: "삭제되었습니다.")
+                    present(alert, animated: true)
+                }else{
+                    let alert = makeAlertWithOneAction(title: nil, message: "삭제 실패했습니다.")
+                    present(alert, animated: true)
+                }
+            }else{
+                favoriteList.add(newDic)
+                let filePath = getFilePath(fileName: fileName+".plist")
+                let result =  favoriteList.write(toFile: filePath, atomically: true)
+                if result {
+                    //(sender as AnyObject).setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                    self.starButton.isChecked = true
+                    let alert = makeAlertWithOneAction(title: nil, message: "추가되었습니다.")
+                    present(alert, animated: true)
+                }else{
+                    let alert = makeAlertWithOneAction(title: nil, message: "추가 실패했습니다.")
+                    present(alert, animated: true)
+                }
+            }
+        }else{
+            print("없으니까 바로 실행!! ")
+            
+            favoriteList.add(newDic)
+            let filePath = getFilePath(fileName: fileName+".plist")
+            let result =  favoriteList.write(toFile: filePath, atomically: true)
+            if result {
+                //(sender as AnyObject).setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                self.starButton.isChecked = true
+                let alert = makeAlertWithOneAction(title: nil, message: "추가되었습니다.")
+                present(alert, animated: true)
+            }else{
+                let alert = makeAlertWithOneAction(title: nil, message: "추가 실패했습니다.")
+                present(alert, animated: true)
+            }
+        }
+    }
+    
+    
     @IBAction func actShare(_ sender: Any) {
         let alert = UIAlertController(title: "공유", message: "\n\n\n\n\n", preferredStyle: .actionSheet)
         let action1 = UIAlertAction(title: "취소", style: .cancel) { _ in
@@ -234,7 +428,31 @@ class HospitalDetailViewController: UIViewController, MTMapViewDelegate, CLLocat
 //                self.dutyErynImage.isEnabled = true
 //            }
 //        }), for: .editingChanged)
+        
+        
+    
     }
+    //즐겨찾기/starbutton
+    override func viewWillAppear(_ animated: Bool) {
+        let targetPath = getFilePath(fileName: fileName+".plist")
+        //path는 무조건 optional
+        guard let originPath = Bundle.main.path(forResource: fileName, ofType: "plist") else {return}
+        copyFile(originPath,targetPath)
+        
+        guard let favoriteList = NSMutableArray(contentsOfFile: targetPath) else {return}
+        self.favoriteList = favoriteList
+        print("홈 reload", self.favoriteList)
+        
+//        print("aaa", UserDefaults.standard.string(forKey: "defaultText"))
+//        defaultText = UserDefaults.standard.string(forKey: "defaultText") != nil ? UserDefaults.standard.string(forKey: "defaultText") : "아이유"
+//        searchBar.text = defaultText
+//        search(defaultText, page)
+    }
+    
+    
+    
+    
+    
     
     /*
     // MARK: - Navigation

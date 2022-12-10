@@ -8,7 +8,7 @@
 import Foundation
 
 struct Hospital:Codable {
-//    let hpid:String
+    let hpid:String
     let dutyName:String
     let dutyTel1:String
     let dutyTel3:String
@@ -34,12 +34,13 @@ struct Hospital:Codable {
     let dgidIdName:String
     let wgs84Lon:Double
     let wgs84Lat:Double
-    let dutyEryn:Int //응급실 1은 없음 2은 있음
+    let dutyEryn:Int //응급실 1은 있음 2은 없음
     let o038:String //입원실
+    let distance:Double
 //    let avalhospital:Int //진료가능
 }
 struct Pharmacy:Codable {
-//    let hpid:String
+    let hpid:String
     let dutyName:String
     let dutyTel1:String
     let dutyAddr:String
@@ -61,6 +62,7 @@ struct Pharmacy:Codable {
     let dutyTime6s:String
     let dutyTime7s:String
     let dutyTime8s:String
+    let distance:Double
 }
 struct ResultData1:Codable {
     let hospital:[Hospital]

@@ -9,6 +9,7 @@ import UIKit
 
 class PharmacyCell: UITableViewCell {
 
+    @IBOutlet var lblDistance: UILabel!
     @IBOutlet weak var lblPharmacyName: UILabel!
     @IBOutlet weak var lblPharmacyAddr: UILabel!
     @IBOutlet weak var lblPharmacyCall: UILabel!

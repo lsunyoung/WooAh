@@ -10,8 +10,10 @@ import MapKit
 
 class PharmacyDetailViewController: UIViewController, MTMapViewDelegate {
     
-    var pharmacy:Pharmacy?
+    let fileName = "FavoritePharmacyList"
+    var favoriteList:NSMutableArray?
     
+    var pharmacy:Pharmacy?
     @IBOutlet var subView: UIView!
     var mapView: MTMapView?
     
@@ -119,11 +121,118 @@ class PharmacyDetailViewController: UIViewController, MTMapViewDelegate {
                 self.weekButton.isEnabled = true
             }
         }
+        // 즐겨찾기/starbutton
+        let targetPath = getFilePath(fileName: fileName+".plist")
+        //path는 무조건 optional
+        guard let originPath = Bundle.main.path(forResource: fileName, ofType: "plist") else {return}
+        copyFile(originPath,targetPath)
+       
+        //guard let favoriteList = NSMutableArray(contentsOfFile: originPath) else {return}
+        guard let favoriteList = NSMutableArray(contentsOfFile: targetPath) else {return}
+        self.favoriteList = favoriteList
+        print("상세페이지 ", self.favoriteList)
+        
+        //즐겨찾기에 있는 약국일 경우 별 활성화
+        if favoriteList.count > 0 {
+            var overlap = false
+            var overlapIndex = 0
+            for (i, ele) in favoriteList.enumerated(){
+                
+                if let ele = ele as? [String:Any]  {
+                    if ele["hpid"] as! String == pharmacy?.hpid {
+                        print("이미 있다! : ",i)
+                        print("이미 있다! : ",ele["hpid"] ,":",pharmacy?.hpid )
+                        overlap = true
+                        overlapIndex = i
+                        break
+                    }
+                }
+            }//for end
+            
+            self.starButton.isChecked = overlap
+            
+        }
         
     }
     @IBAction func actBack(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
+    //starButton
+     
+     @IBAction func starButton(_ sender: Any) {
+         
+         // starBtn Press Action
+         guard let favoriteList = self.favoriteList else {fatalError()}
+         
+         let newDic = [
+             "hpid" : pharmacy?.hpid,
+             "dutyName" : pharmacy?.dutyName,
+             "dutyAddr" : pharmacy?.dutyAddr,
+             "dutyTel1" : pharmacy?.dutyTel1
+         ] as [String : Any]
+         
+         if favoriteList.count > 0 {
+             var overlap = false
+             var overlapIndex = 0
+             for (i, ele) in favoriteList.enumerated(){
+                 
+                 if let ele = ele as? [String:Any]  {
+                     if ele["hpid"] as! String == pharmacy?.hpid {
+                         print("이미 있다! : ",i)
+                         print("이미 있다! : ",ele["hpid"] ,":",pharmacy?.hpid )
+                         overlap = true
+                         overlapIndex = i
+                         break
+                     }
+                 }
+             }//for end
+             if overlap {
+                 favoriteList.removeObject(at: overlapIndex)
+                 let filePath = getFilePath(fileName: fileName+".plist")
+                 let result =  favoriteList.write(toFile: filePath, atomically: true)
+                 if result {
+                     //(sender as AnyObject).setImage(UIImage(systemName: "heart"), for: .normal)
+                     self.starButton.isChecked = false
+                     let alert =  makeAlertWithOneAction(title: nil, message: "삭제되었습니다.")
+                     present(alert, animated: true)
+                 }else{
+                     let alert = makeAlertWithOneAction(title: nil, message: "삭제 실패했습니다.")
+                     present(alert, animated: true)
+                 }
+             }else{
+                 favoriteList.add(newDic)
+                 let filePath = getFilePath(fileName: fileName+".plist")
+                 let result =  favoriteList.write(toFile: filePath, atomically: true)
+                 if result {
+                     //(sender as AnyObject).setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                     self.starButton.isChecked = true
+                     let alert = makeAlertWithOneAction(title: nil, message: "추가되었습니다.")
+                     present(alert, animated: true)
+                 }else{
+                     let alert = makeAlertWithOneAction(title: nil, message: "추가 실패했습니다.")
+                     present(alert, animated: true)
+                 }
+             }
+                         
+         }else{
+             print("없으니까 바로 실행!! ")
+             
+             favoriteList.add(newDic)
+             let filePath = getFilePath(fileName: fileName+".plist")
+             let result =  favoriteList.write(toFile: filePath, atomically: true)
+             if result {
+                 //(sender as AnyObject).setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                 self.starButton.isChecked = true
+                 let alert = makeAlertWithOneAction(title: nil, message: "추가되었습니다.")
+                 present(alert, animated: true)
+             }else{
+                 let alert = makeAlertWithOneAction(title: nil, message: "추가 실패했습니다.")
+                 present(alert, animated: true)
+             }
+         }
+     }
+     
+    
     
     @IBAction func actShare(_ sender: Any) {
         let alert = UIAlertController(title: "공유", message: "\n\n\n\n\n", preferredStyle: .actionSheet)

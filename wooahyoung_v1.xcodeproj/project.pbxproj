@@ -57,6 +57,11 @@
 		295CBEA1292B743000F14391 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 295CBEA0292B743000F14391 /* Alamofire */; };
 		29F7006C292CF99200493F89 /* HospitalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F7006B292CF99200493F89 /* HospitalDetailViewController.swift */; };
 		29F7006E292D0D2B00493F89 /* StarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F7006D292D0D2B00493F89 /* StarButton.swift */; };
+		F09B621E293C64E200AF37E3 /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = F09B621D293C64E200AF37E3 /* ProgressHUD */; };
+		F0B1E1352936E6EE0018CF32 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B1E1342936E6EE0018CF32 /* Utils.swift */; };
+		F0B1E137293754480018CF32 /* FavoriteHospitalList.plist in Resources */ = {isa = PBXBuildFile; fileRef = F0B1E136293754480018CF32 /* FavoriteHospitalList.plist */; };
+		F0B1E13929378A900018CF32 /* FavoritePharmacyList.plist in Resources */ = {isa = PBXBuildFile; fileRef = F0B1E13829378A900018CF32 /* FavoritePharmacyList.plist */; };
+		F0BC975B2936341A006626FF /* FavoriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BC975A2936341A006626FF /* FavoriteTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -120,6 +125,10 @@
 		295CBE9E292B72B100F14391 /* Kakao-Map_bridge-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Kakao-Map_bridge-Header.h"; sourceTree = "<group>"; };
 		29F7006B292CF99200493F89 /* HospitalDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HospitalDetailViewController.swift; sourceTree = "<group>"; };
 		29F7006D292D0D2B00493F89 /* StarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarButton.swift; sourceTree = "<group>"; };
+		F0B1E1342936E6EE0018CF32 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		F0B1E136293754480018CF32 /* FavoriteHospitalList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = FavoriteHospitalList.plist; sourceTree = "<group>"; };
+		F0B1E13829378A900018CF32 /* FavoritePharmacyList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = FavoritePharmacyList.plist; sourceTree = "<group>"; };
+		F0BC975A2936341A006626FF /* FavoriteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +141,7 @@
 				295CBE95292B725300F14391 /* QuartzCore.framework in Frameworks */,
 				295CBE9B292B727E00F14391 /* libsqlite3.tbd in Frameworks */,
 				295CBE97292B725D00F14391 /* SystemConfiguration.framework in Frameworks */,
+				F09B621E293C64E200AF37E3 /* ProgressHUD in Frameworks */,
 				295CBE91292B723800F14391 /* CoreLocation.framework in Frameworks */,
 				295CBE9D292B728C00F14391 /* libxml2.tbd in Frameworks */,
 				295CBE8E292B71F400F14391 /* DaumMap.framework in Frameworks */,
@@ -163,6 +173,7 @@
 		295CBE21292B63AC00F14391 /* wooahyoung_v1 */ = {
 			isa = PBXGroup;
 			children = (
+				F0BC9759293633F7006626FF /* Favorites */,
 				297567BE2930A5E500BF6A58 /* Main */,
 				297567BF2930A61700BF6A58 /* Hospital */,
 				297567C02930A62C00BF6A58 /* Pharmacy */,
@@ -288,6 +299,17 @@
 			name = Pharmacy;
 			sourceTree = "<group>";
 		};
+		F0BC9759293633F7006626FF /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				F0B1E136293754480018CF32 /* FavoriteHospitalList.plist */,
+				F0B1E13829378A900018CF32 /* FavoritePharmacyList.plist */,
+				F0BC975A2936341A006626FF /* FavoriteTableViewController.swift */,
+				F0B1E1342936E6EE0018CF32 /* Utils.swift */,
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -306,6 +328,7 @@
 			name = wooahyoung_v1;
 			packageProductDependencies = (
 				295CBEA0292B743000F14391 /* Alamofire */,
+				F09B621D293C64E200AF37E3 /* ProgressHUD */,
 			);
 			productName = wooahyoung_v1;
 			productReference = 295CBE1F292B63AC00F14391 /* wooahyoung_v1.app */;
@@ -337,6 +360,7 @@
 			mainGroup = 295CBE16292B63AB00F14391;
 			packageReferences = (
 				295CBE9F292B742F00F14391 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				F09B621C293C64E200AF37E3 /* XCRemoteSwiftPackageReference "ProgressHUD" */,
 			);
 			productRefGroup = 295CBE20292B63AC00F14391 /* Products */;
 			projectDirPath = "";
@@ -357,6 +381,7 @@
 				295CBE7D292B71F400F14391 /* map_pin_red@3x.png in Resources */,
 				295CBE88292B71F400F14391 /* map_pin.png in Resources */,
 				295CBE81292B71F400F14391 /* map_pin_red.png in Resources */,
+				F0B1E13929378A900018CF32 /* FavoritePharmacyList.plist in Resources */,
 				295CBE73292B71F400F14391 /* map_pinup_custom@3x.png in Resources */,
 				295CBE7B292B71F400F14391 /* copyright.png in Resources */,
 				295CBE7A292B71F400F14391 /* map_pin_shadow@3x.png in Resources */,
@@ -380,6 +405,7 @@
 				295CBE75292B71F400F14391 /* shadow_balloon.png in Resources */,
 				295CBE2C292B63AD00F14391 /* Assets.xcassets in Resources */,
 				295CBE2A292B63AC00F14391 /* Main.storyboard in Resources */,
+				F0B1E137293754480018CF32 /* FavoriteHospitalList.plist in Resources */,
 				295CBE8C292B71F400F14391 /* daum_th_line.png in Resources */,
 				295CBE76292B71F400F14391 /* map_pinup.png in Resources */,
 			);
@@ -397,6 +423,8 @@
 				295CBE23292B63AC00F14391 /* AppDelegate.swift in Sources */,
 				29F7006C292CF99200493F89 /* HospitalDetailViewController.swift in Sources */,
 				291F089A292EFF4900DB3E63 /* PharmacyDetailViewController.swift in Sources */,
+				F0B1E1352936E6EE0018CF32 /* Utils.swift in Sources */,
+				F0BC975B2936341A006626FF /* FavoriteTableViewController.swift in Sources */,
 				295CBE3B292B6B2B00F14391 /* MapViewController.swift in Sources */,
 				29F7006E292D0D2B00493F89 /* StarButton.swift in Sources */,
 				295CBE3F292B6B5500F14391 /* PharmacyCell.swift in Sources */,
@@ -550,14 +578,16 @@
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = DX499AT2X5;
+				DEVELOPMENT_TEAM = AL8P3TG7CC;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/wooahyoung_v1/DaumMap.embeddedframework",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = wooahyoung_v1/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "우아영";
+				INFOPLIST_KEY_CFBundleDisplayName = "WooAh!";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "사용자의 위치를 받아오려고 합니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자의 위치정보를 받아오려고 합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -568,10 +598,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.project.sy;
+				PRODUCT_BUNDLE_IDENTIFIER = net.womansup2022.jmy.wooah;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/lsy/lsy_ios/wooahyoung_v1/Kakao-Map_bridge-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/miyoungji/WooAh/Kakao-Map_bridge-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -585,14 +615,16 @@
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = DX499AT2X5;
+				DEVELOPMENT_TEAM = AL8P3TG7CC;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/wooahyoung_v1/DaumMap.embeddedframework",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = wooahyoung_v1/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "우아영";
+				INFOPLIST_KEY_CFBundleDisplayName = "WooAh!";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "사용자의 위치를 받아오려고 합니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자의 위치정보를 받아오려고 합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -603,10 +635,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.project.sy;
+				PRODUCT_BUNDLE_IDENTIFIER = net.womansup2022.jmy.wooah;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/lsy/lsy_ios/wooahyoung_v1/Kakao-Map_bridge-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/miyoungji/WooAh/Kakao-Map_bridge-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -644,6 +676,14 @@
 				kind = branch;
 			};
 		};
+		F09B621C293C64E200AF37E3 /* XCRemoteSwiftPackageReference "ProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/relatedcode/ProgressHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 13.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -651,6 +691,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 295CBE9F292B742F00F14391 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		F09B621D293C64E200AF37E3 /* ProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F09B621C293C64E200AF37E3 /* XCRemoteSwiftPackageReference "ProgressHUD" */;
+			productName = ProgressHUD;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

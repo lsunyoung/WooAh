@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>BaseURL</key>
+	<string>https://wooahwooah.azurewebsites.net</string>
+	<key>KAKAO_APP_KEY</key>
+	<string>6d3c2e5b9f6913eae428591c9faa949f</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>kakaomap</string>
@@ -9,12 +13,6 @@
 		<string>kakaolink</string>
 		<string>facebook</string>
 	</array>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>사용자의 위치를 받아오려고 합니다.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>사용자의 위치정보를 받아오려고 합니다.</string>
-	<key>KAKAO_APP_KEY</key>
-	<string>0b7bdf3c519888fb74f92f810972b1cc</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
